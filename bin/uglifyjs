@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+
+require 'uglifier'
+
+# This file is inspired by / based off of http://ozmm.org/posts/argf.html
+
+def help
+  puts <<-help
+Usage:
+  $ uglifyjs < file.js
+  $ uglifyjs file1.js file2.js
+help
+end
+
+# First off, let's show help some help if no arguments and tty
+if ($stdin.tty? && ARGV.empty?) || ARGV.delete('-h') || ARGV.delete('--help')
+  help
+else
+  # Well, lets read those files
+  nc = !!ARGV.delete('-nc') || !!ARGV.delete('--no-copyright')
+  paths = [File.dirname(ARGF.path)]
+  doc = ARGF.read
+  uglifier = Uglifier.new :copyright => !nc
+  puts uglifier.compile(doc)
+end

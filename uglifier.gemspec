@@ -34,6 +34,7 @@ Gem::Specification.new do |s|
     "uglifier.gemspec"
   ]
   s.homepage = "http://github.com/lautis/uglifier"
+  s.executables = ["uglifyjs"]
   s.require_paths = ["lib"]
   s.rubygems_version = "1.8.11"
   s.summary = "Ruby wrapper for UglifyJS JavaScript compressor"
